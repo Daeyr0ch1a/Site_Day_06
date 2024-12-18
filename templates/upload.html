@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="tvix">Загрузить фото</h1>
+    <div class="upload-container">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="upload-row">
+                <input type="file" name="photo" class="file-input" required>
+            </div>
+            <div class="upload-row">
+                <button type="submit" class="upload-button">Загрузить</button>
+                <button type="button" class="cancel-button" onclick="cancelUpload()">Отмена</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

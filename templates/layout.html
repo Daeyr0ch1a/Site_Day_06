@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dropdown.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='photo-gallery.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='uploads.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header class="logo-header">
+        <div class="logo">PleinAir.Art</div>
+    </header>
+    <header class="nav-header">
+        <ul class="nav-menu">
+            <div class="left-nav">
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a></li>
+                <li><a href="{{ url_for('gallery') }}">Мои фото</a></li>
+            </div>
+            <div class="right-nav">
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('upload') }}" class="btn-upload">Загрузить фото</a></li>
+                    <li><a href="{{ url_for('logout') }}">Выйти</a></li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn" onclick="toggleDropdown(this)">Аккаунт</a>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('login') }}">Войти</a>
+                            <a href="{{ url_for('register') }}">Регистрация</a>
+                        </div>
+                    </li>
+                {% endif %}
+            </div>
+        </ul>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 PleinAir.Art. Без прав 🤙.</p>
+    </footer>
+    <script>
+        function toggleDropdown(button) {
+            var content = button.nextElementSibling;
+            content.classList.toggle("show");
+            button.classList.toggle("active");
+        }
+
+        function cancelUpload() {
+            document.querySelector('.upload-container form').reset();
+        }
+    </script>
+</body>
+</html>

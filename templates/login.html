@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="auth-form">
+    <h2>Вход</h2>
+    <form method="POST" action="/login">
+        <input type="text" name="username" placeholder="Имя пользователя" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+{% endblock %}

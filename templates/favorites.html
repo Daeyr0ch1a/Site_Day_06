@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Избранные фото</h1>
+<div class="photo-gallery">
+    {% for photo in photos %}
+        <div class="photo">
+            <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title or 'Фото' }}">
+            <h3>{{ photo.title or 'Без заголовка' }}</h3>
+            <p>{{ photo.description or '' }}</p>
+            <form class="invisible-form" method="POST" action="{{ url_for('favorite_photo', photo_id=photo.id) }}">
+                <button type="submit"><i class="fas fa-heart-broken"></i></button>
+            </form>
+            <form class="invisible-form" method="POST" action="{{ url_for('edit_photo', photo_id=photo.id) }}">
+                <button type="submit"><i class="fas fa-edit"></i></button>
+            </form>
+            <form class="invisible-form" method="POST" action="{{ url_for('delete_photo', photo_id=photo.id) }}">
+                <button type="submit"><i class="fas fa-trash-alt"></i></button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

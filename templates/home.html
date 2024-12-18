@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="photo-gallery">
+    {% for photo in photos %}
+        <div class="photo">
+            <a href="{{ url_for('view_photo', photo_id=photo.id) }}">
+                <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title or 'Без заголовка' }}">
+                <h3>{{ photo.title or 'Без заголовка' }}</h3>
+            </a>
+            {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="toggleDropdown(this)">^</button>
+                    <div class="dropdown-content">
+                        <form method="POST" action="{{ url_for('favorite_photo', photo_id=photo.id) }}">
+                            <button type="submit">{{ 'Удалить из избранного' if photo.is_favorite else 'Добавить в избранное' }}</button>
+                        </form>
+                        {% if photo.user_id == current_user.id %}
+                            <a href="{{ url_for('edit_photo', photo_id=photo.id) }}">Редактировать</a>
+                            <form method="POST" action="{{ url_for('delete_photo', photo_id=photo.id) }}">
+                                <button type="submit">Удалить</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

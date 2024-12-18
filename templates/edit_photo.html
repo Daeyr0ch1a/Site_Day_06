@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Редактировать фото</h1>
+<form method="POST">
+    <input type="text" name="title" placeholder="Заголовок" value="{{ photo.title or '' }}" required>
+    <textarea name="description" placeholder="Описание">{{ photo.description or '' }}</textarea>
+    <button type="submit">Сохранить изменения</button>
+</form>
+{% endblock %}

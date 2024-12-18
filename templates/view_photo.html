@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="photo-full">
+    <div class="photo-container">
+        <div class="photo-column">
+            <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title or 'Фото' }}">
+        </div>
+        <div class="info-column">
+            <h2>{{ photo.title or 'Без заголовка' }}</h2>
+            <p>{{ photo.description or '' }}</p>
+            <a href="{{ url_for('home') }}" class="back-link">Назад в галерею</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+/* Стиль для элементов и общие стили */
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.photo {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    padding: 0; /* убираем отступы */
+}
+
+.photo img,
+.photo-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* изображение заполняет контейнер, сохраняя пропорции */
+}
+
+.photo h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    margin: 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.photo:hover h3 {
+    opacity: 1;
+}
+
+.info-column a {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s, background-color 0.3s;
+    margin-top: 20px; /* добавляем отступ сверху */
+}
+
+.info-column a:hover {
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.5);
+    background-color: #4cae4c;
+}
+
+/* Контейнер для фото по центру и с ограничением размера */
+.photo-container {
+    max-width: 800px; /* максимальная ширина контейнера */
+    margin: 0 auto; /* центрируем контейнер */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px; /* расстояние между столбцами */
+}
+
+.photo-column {
+    flex: 1; /* столбец с фото */
+}
+
+.info-column {
+    flex: 1; /* столбец с информацией и кнопками */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Общие стили для кнопок */
+button {
+    background-color: white; /* устанавливаем белый фон */
+    color: #333; /* делаем текст темно-серым */
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s, background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none; /* убираем границы */
+    outline: none; /* убираем контур */
+    margin-bottom: 10px; /* добавляем отступ между кнопками */
+}
+
+button:hover {
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.5);
+    background-color: #f1f1f1; /* светло-серый фон при наведении */
+}
+
+button i {
+    margin-right: 5px;
+}
+
+/* Делаем формы невидимыми */
+.invisible-form {
+    display: inline-block; /* Используем inline-block для корректного отображения кнопок */
+    visibility: hidden; /* Делаем формы невидимыми */
+}
+
+.invisible-form button {
+    visibility: visible; /* Делаем кнопки видимыми */
+}
